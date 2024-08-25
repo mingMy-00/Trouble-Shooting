@@ -10,6 +10,7 @@ https://github.com/Afdddd/TIL/blob/main/Docker/Docker%EB%9E%80.md
 
 적용하기 전에 당연히!!! Docker를 다운받으셔야 합니답.<br>
 다운받았다는 가정하에 진행 
+<br><br>
 
 # 1️⃣ docker file작성
 
@@ -38,6 +39,8 @@ ENTRYPOINT ["java", "-jar", "app.jar"]
 ⇒ 이거 같은 경우는 저희 앱 build 하면 자동으로 생기고 <br>(gradle 기준임, maven이면 target에 있어용) 그 경로 그대로 써주시면 됩니당. 
 
 그럼 그 다음 도커 이미지를 만들어줘야죵 
+
+<br><br>
 
 # 2️⃣ docker image 만들기
 
@@ -76,6 +79,8 @@ apline이 아닌 일반 jdk 이미지로 바꿨습니당.
 
 !!그럼 이제 도커 컨테이너를 실행해봐야게쬬 
 
+<br><br>
+
 ### <mark>2_2. 도커 컨테이너 실행하기</mark>
 
 ```java
@@ -93,6 +98,8 @@ docker run -p 8080:8080 ecservice
 잘 실행된다면 브라우저에 localhost:8080으로 접속해도 잘 뜹니당 
 
 # 그런데 잘 안돼요
+
+<br><br>
 
 ## 첫 번째 오류
 
@@ -136,6 +143,8 @@ postman으로 제 8080에다가 주문데이터 생성을 해보니
 
 # 그래서 어떻게 해결했냐.
 
+<br><br>
+
 ### 1. localhost 대신 host.docker.internal
 
 application.yml 파일 
@@ -155,6 +164,8 @@ url: jdbc:postgresql://host.docker.internal:5432/ecsdb
 
 저는 그래서 그냥 고정 ip방법을 사용했습니당. 
 
+<br><br>
+
 ### 2. localhost 대신 ip 적어주기
 
 ```jsx
@@ -162,6 +173,8 @@ url: jdbc:postgresql://내 ip주소 /DB스키마이름
 ```
 
 저는 이거 하면서 오류 많이 겪어서 차근차근 단계별로 쓸게용.
+
+<br><br>
 
 2_1. 터미널에 ifconfig 입력해서 사용중인 내 로컬 ip 검색 
 
@@ -252,6 +265,8 @@ sudo lsof -i -P -n | grep LISTEN
 
 → 하면 볼 수 있는데 잘 수신중임. 
 
+<br><br>
+
 # 그럼 이제 문제는 네트워크 뿐이다..
 
 1️⃣ 임의로 로컬에서 postgreSQL 서버에 접근 가능한지 확인
@@ -312,7 +327,7 @@ brew services restart postgresql@14
 
 -끝- 
 
-다신 보지말자 도커야 
+다음엔 클라우드 배포로 오겠습니당
 <br>
 
 
